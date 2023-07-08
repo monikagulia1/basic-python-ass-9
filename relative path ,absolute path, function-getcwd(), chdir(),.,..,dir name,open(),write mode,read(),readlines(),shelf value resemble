@@ -1,0 +1,140 @@
+1. To what does a relative path refer?
+2. What does an absolute path start with your operating system?
+3. What do the functions os.getcwd() and os.chdir() do?
+4. What are the . and .. folders?
+5. In C:\bacon\eggs\spam.txt, which part is the dir name, and which part is the base name?
+6. What are the three “mode” arguments that can be passed to the open() function?
+7. What happens if an existing file is opened in write mode?
+8. How do you tell the difference between read() and readlines()?
+9. What data structure does a shelf value resemble?
+
+
+answers-
+1. A relative path refers to the path of a file or directory relative to the current working directory.
+It does not start with the root directory or drive letter and relies on the current directory for reference.
+
+2. An absolute path typically starts with the root directory or drive letter, depending on the operating system. 
+For example, on Windows systems, an absolute path could start with "C:\" followed by the directories and file names.
+
+3. The `os.getcwd()` function returns the current working directory, which is the directory that the Python script or program is currently running in. 
+The `os.chdir()` function is used to change the current working directory to the specified directory.
+
+4. In file systems, the "." (dot) represents the current directory, and ".." (dot dot) represents the parent directory.
+For example, if you are in the directory "C:\bacon\eggs" and you navigate to "..", you will be in the directory "C:\bacon".
+
+5. In the path "C:\bacon\eggs\spam.txt", the "C:\bacon\eggs" part is the directory name (or dirname), and "spam.txt" is the base name (or basename).
+
+6. The three mode arguments that can be passed to the `open()` function are:
+   - "r": Read mode. Opens the file for reading.
+   - "w": Write mode. Opens the file for writing. If the file doesn't exist, it creates a new file. If it exists, it truncates the file.
+   - "a": Append mode. Opens the file for writing, but appends new data to the end of the file instead of truncating it.
+
+7. If an existing file is opened in write mode ("w"), the file will be truncated, meaning all its contents will be erased.
+Any new data written to the file will overwrite the existing content. Therefore, caution should be exercised when using write mode to avoid unintentional loss of data.
+
+8. The `read()` method reads the entire contents of a file as a single string. 
+It returns a string value that represents the file's content.
+
+   The `readlines()` method reads the contents of a file and returns a list of strings, where each string represents a line in the file.
+Each line is separated by a newline character (\n).
+
+9. A shelf value in Python resembles a dictionary data structure. 
+It is a persistent, dictionary-like object that allows storing and retrieving Python objects as key-value pairs on the disk.
+The `shelve` module provides an interface to create and manipulate shelf values, which are typically stored as binary files.
+
+
+
+examples of above all-
+Sure! Here are some examples to illustrate the concepts:
+
+1. Relative Path:
+   - If your current working directory is "C:\Users\John", a relative path could be "Documents\file.txt". This path refers to a file named "file.txt" located in the "Documents" directory within the current working directory.
+
+2. Absolute Path:
+   - On a Windows system, an absolute path could be "C:\Users\John\Documents\file.txt". This path starts with the root directory "C:\" and specifies the full path to the file "file.txt".
+
+3. os.getcwd() and os.chdir():
+   ```python
+   import os
+
+   current_dir = os.getcwd()
+   print("Current Directory:", current_dir)
+
+   os.chdir("C:\\Users\\John\\Documents")
+   updated_dir = os.getcwd()
+   print("Updated Directory:", updated_dir)
+   ```
+   Output:
+   ```
+   Current Directory: C:\Users\John
+   Updated Directory: C:\Users\John\Documents
+   ```
+   In this example, `os.getcwd()` returns the current working directory, and `os.chdir()` changes the current working directory to "C:\Users\John\Documents".
+
+4. . and .. folders:
+   - Suppose your current directory is "C:\Users\John\Documents". In this case:
+     - The "." (dot) represents the current directory, so ".\file.txt" would refer to a file named "file.txt" in the current directory.
+     - The ".." (dot dot) represents the parent directory, so "..\file.txt" would refer to a file named "file.txt" in the parent directory ("C:\Users\John" in this example).
+
+5. Directory Name and Base Name:
+   In the path "C:\bacon\eggs\spam.txt":
+   - "C:\bacon\eggs" is the directory name (dirname) as it represents the path to the folder containing the file.
+   - "spam.txt" is the base name (basename) as it represents the actual name of the file.
+
+6. Mode Arguments for `open()`:
+   ```python
+   file = open("example.txt", "r")
+   # Opens the file "example.txt" in read mode
+
+   file = open("example.txt", "w")
+   # Opens the file "example.txt" in write mode
+
+   file = open("example.txt", "a")
+   # Opens the file "example.txt" in append mode
+   ```
+
+7. Opening an Existing File in Write Mode:
+   If an existing file is opened in write mode ("w"), its contents will be erased. For example:
+   ```python
+   file = open("existing_file.txt", "w")
+   file.write("This will overwrite the existing content.")
+   file.close()
+   ```
+   After executing this code, the existing content of "existing_file.txt" will be replaced with the new text.
+
+8. Difference between `read()` and `readlines()`:
+   ```python
+   file = open("example.txt", "r")
+
+   content = file.read()
+   print(content)
+   # Reads the entire content of the file as a single string
+
+   file.seek(0)  # Reset the file pointer to the beginning
+
+   lines = file.readlines()
+   print(lines)
+   # Reads the content of the file and returns a list of lines
+   ```
+   In this example, `read()` returns the content of the file as a string, 
+while `readlines()` returns a list where each element represents a line in the file.
+
+9. Shelf Value Resembling a Dictionary:
+   ```python
+   import shelve
+
+   with shelve.open("mydata") as data:
+       data["name"] = "John"
+       data["age"] = 30
+
+   with shelve.open("mydata") as data:
+       print(data["name"])
+       print(data["age"])
+   ```
+   Output:
+   ```
+   John
+   30
+   ```
+   In this example, a shelf value is created using `shelve.open()`, and key-value pairs (name and age) are stored. 
+The shelf value behaves like a dictionary, allowing you to access and retrieve values using keys.
